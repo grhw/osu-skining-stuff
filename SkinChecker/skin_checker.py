@@ -8,6 +8,7 @@ from tkinter import ttk
 from more_itertools import unzip
 import scd_parser
 from skin_checkerui import SkinCheckerUI
+from PIL import Image
 import sv_ttk
 
 with open("osu_files.scd", "r") as f:
@@ -121,6 +122,23 @@ class SkinChecker(SkinCheckerUI):
     def update_setting(self, widget_id):
         self.settings[widget_id] = "selected" in self.builder.get_object(widget_id).state()
         print(widget_id)
+    
+    def auto_create_sd(self,widget_id):
+        self.builder.get_object(widget_id).configure(state = tkinter.DISABLED)
+        if messagebox.askokcancel("Are you sure?",'Are you sure you want to generate SD files? This may take a while.'):
+            for filename in self.files:
+                full_fn = os.path.join(self.skin,filename.replace(".","@2x."))
+                
+                if os.path.exists(full_fn):
+                    image = Image.open(full_fn)
+                    w,h = image.size
+                    if w > 2 and h > 2:
+                        image.resize((w//2,h//2),resample=Image.Resampling.LANCZOS).save(full_fn.replace("@2x",""))
+            messagebox.showinfo("Finished!", "Finished creating SD files.")
+        self.builder.get_object(widget_id).configure(state = tkinter.NORMAL)
+
+    def remove_sd(self):
+        messagebox.showinfo("Un-implemented!","Haven't implemented yet because it's kind of dangerous to have this thing delete files.")
 
 app = SkinChecker()
 

@@ -58,6 +58,12 @@ class SkinCheckerUI:
     def start_check(self):
         pass
 
+    def auto_create_sd(self, widget_id):
+        pass
+
+    def remove_sd(self):
+        pass
+
     def update_setting(self, widget_id):
         pass
 

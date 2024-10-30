@@ -124,7 +124,7 @@
             </child>
             <child>
               <object class="ttk.Button" id="create_sd" named="True">
-                <property name="command" type="command" cbtype="simple">auto_create_sd</property>
+                <property name="command" type="command" cbtype="with_wid">auto_create_sd</property>
                 <property name="compound">top</property>
                 <property name="takefocus">true</property>
                 <property name="text" translatable="yes">Generate SD from HD files</property>
