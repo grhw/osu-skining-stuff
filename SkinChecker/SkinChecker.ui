@@ -1,0 +1,389 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.4" author="PygubuDesigner 0.39.3">
+  <project>
+    <settings>
+      <setting id="name">Gust's Skin Checker for osu!</setting>
+      <setting id="description">[ Gust ]</setting>
+      <setting id="module_name">skin_checker</setting>
+      <setting id="template">application</setting>
+      <setting id="main_widget">tk1</setting>
+      <setting id="main_classname">SkinChecker</setting>
+      <setting id="main_menu" />
+      <setting id="output_dir" />
+      <setting id="output_dir2" />
+      <setting id="import_tkvariables">False</setting>
+      <setting id="use_ttk_styledefinition_file">True</setting>
+      <setting id="use_i18n">False</setting>
+      <setting id="all_ids_attributes">False</setting>
+      <setting id="generate_code_onsave">False</setting>
+      <setting id="use_window_centering_code">True</setting>
+      <setting id="ttk_style_definition_file" />
+    </settings>
+    <customwidgets />
+  </project>
+  <object class="tk.Tk" id="tk1">
+    <property name="height">200</property>
+    <property name="title" translatable="yes">Gust's Skin Checker for osu!</property>
+    <property name="width">200</property>
+    <child>
+      <object class="ttk.Frame" id="frame1">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="fill">x</property>
+          <property name="ipadx">5</property>
+          <property name="ipady">5</property>
+          <property name="padx">15</property>
+          <property name="pady">0</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Labelframe" id="skin" named="True">
+            <property name="cursor">arrow</property>
+            <property name="height">200</property>
+            <property name="labelanchor">nw</property>
+            <property name="padding">5</property>
+            <property name="text" translatable="yes">Skin</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="anchor">w</property>
+              <property name="fill">y</property>
+              <property name="ipady">4</property>
+              <property name="side">right</property>
+            </layout>
+            <child>
+              <object class="ttk.Button" id="osu_folder" named="True">
+                <property name="command" type="command" cbtype="simple">set_osu_folder</property>
+                <property name="compound">top</property>
+                <property name="takefocus">true</property>
+                <property name="text" translatable="yes">Select osu! folder</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="update_skins" named="True">
+                <property name="command" type="command" cbtype="simple">update_skin_list</property>
+                <property name="compound">top</property>
+                <property name="style">secondary.TButton</property>
+                <property name="takefocus">true</property>
+                <property name="text" translatable="yes">Update skins</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="pady">4</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Separator" id="separator1">
+                <property name="orient">horizontal</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="pady">4</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.OptionMenu" id="skins" named="True">
+                <property name="command" type="command" cbtype="simple">change_skin</property>
+                <property name="direction">below</property>
+                <property name="value">Select a skin</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="check_skin" named="True">
+                <property name="command" type="command" cbtype="simple">start_check</property>
+                <property name="compound">bottom</property>
+                <property name="style">secondary.TButton</property>
+                <property name="takefocus">true</property>
+                <property name="text" translatable="yes">Check Skin</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="pady">4</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Separator" id="separator2">
+                <property name="orient">horizontal</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="pady">4</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="create_sd" named="True">
+                <property name="command" type="command" cbtype="simple">auto_create_sd</property>
+                <property name="compound">top</property>
+                <property name="takefocus">true</property>
+                <property name="text" translatable="yes">Generate SD from HD files</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="delete_sd" named="True">
+                <property name="command" type="command" cbtype="simple">remove_sd</property>
+                <property name="compound">top</property>
+                <property name="cursor">arrow</property>
+                <property name="default">normal</property>
+                <property name="state">normal</property>
+                <property name="style">danger.TButton</property>
+                <property name="takefocus">true</property>
+                <property name="text" translatable="yes">Remove all SD images if HD version present</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="pady">4</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Labelframe" id="checks" named="True">
+            <property name="cursor">arrow</property>
+            <property name="height">200</property>
+            <property name="labelanchor">nw</property>
+            <property name="padding">5</property>
+            <property name="text" translatable="yes">Checks</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="anchor">e</property>
+              <property name="fill">y</property>
+              <property name="ipadx">4</property>
+              <property name="side">left</property>
+            </layout>
+            <child>
+              <object class="ttk.Checkbutton" id="checks_hd" named="True">
+                <property name="command" type="command" cbtype="with_wid">update_setting</property>
+                <property name="text" translatable="yes">Warn if HD (@2x) isn't present</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Checkbutton" id="checks_sd" named="True">
+                <property name="command" type="command" cbtype="with_wid">update_setting</property>
+                <property name="state">normal</property>
+                <property name="text" translatable="yes">Warn if SD isn't present</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Checkbutton" id="ignore_if_hd" named="True">
+                <property name="command" type="command" cbtype="with_wid">update_setting</property>
+                <property name="text" translatable="yes">Don't warn SD image if HD version is present</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Checkbutton" id="ignore_if_sd" named="True">
+                <property name="command" type="command" cbtype="with_wid">update_setting</property>
+                <property name="text" translatable="yes">Don't warn HD image if SD version is present</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Checkbutton" id="checks_missing" named="True">
+                <property name="command" type="command" cbtype="with_wid">update_setting</property>
+                <property name="style">secondary.TCheckbutton</property>
+                <property name="text" translatable="yes">Warn for missing skin files</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame2">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="fill">both</property>
+          <property name="ipadx">5</property>
+          <property name="ipady">5</property>
+          <property name="padx">15</property>
+          <property name="pady">0</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Labelframe" id="files" named="True">
+            <property name="cursor">arrow</property>
+            <property name="height">200</property>
+            <property name="labelanchor">nw</property>
+            <property name="padding">5</property>
+            <property name="text" translatable="yes">Files</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="anchor">center</property>
+              <property name="fill">both</property>
+              <property name="ipady">4</property>
+              <property name="padx">0</property>
+              <property name="side">top</property>
+            </layout>
+            <child>
+              <object class="ttk.Checkbutton" id="only_missing" named="True">
+                <property name="command" type="command" cbtype="with_wid">update_setting</property>
+                <property name="style">secondary.TCheckbutton</property>
+                <property name="text" translatable="yes">Only display files with warnings</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Checkbutton" id="show_images" named="True">
+                <property name="command" type="command" cbtype="with_wid">update_setting</property>
+                <property name="text" translatable="yes">Show images</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Checkbutton" id="show_sounds" named="True">
+                <property name="command" type="command" cbtype="with_wid">update_setting</property>
+                <property name="text" translatable="yes">Show Sounds</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Notebook" id="modes" named="True">
+                <property name="cursor">arrow</property>
+                <property name="height">200</property>
+                <property name="style">primary.TNotebook</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="fill">both</property>
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="misc" named="True">
+                    <property name="text" translatable="yes">Misc</property>
+                    <child>
+                      <object class="ttk.Treeview" id="misc_view" named="True">
+                        <property name="height">200</property>
+                        <layout manager="pack">
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="song_select" named="True">
+                    <property name="text" translatable="yes">Song Selector</property>
+                    <child>
+                      <object class="ttk.Treeview" id="song_select_view" named="True">
+                        <property name="height">200</property>
+                        <layout manager="pack">
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="osu" named="True">
+                    <property name="text" translatable="yes">osu!</property>
+                    <child>
+                      <object class="ttk.Treeview" id="osu_view" named="True">
+                        <property name="height">200</property>
+                        <layout manager="pack">
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="osu_mania" named="True">
+                    <property name="text" translatable="yes">osu!mania</property>
+                    <child>
+                      <object class="ttk.Treeview" id="osu_mania_view" named="True">
+                        <property name="height">200</property>
+                        <layout manager="pack">
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="osu_catch" named="True">
+                    <property name="text" translatable="yes">osu!catch</property>
+                    <child>
+                      <object class="ttk.Treeview" id="osu_catch_view" named="True">
+                        <property name="height">200</property>
+                        <layout manager="pack">
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="osu_taiko" named="True">
+                    <property name="text" translatable="yes">osu!taiko</property>
+                    <child>
+                      <object class="ttk.Treeview" id="osu_taiko_view" named="True">
+                        <property name="height">200</property>
+                        <layout manager="pack">
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="warning_osu_folder" named="True">
+        <property name="foreground">#ff1496</property>
+        <property name="style">primary.TLabel</property>
+        <property name="text" translatable="yes">Please set your osu! folder first before opening a skin.</property>
+        <layout manager="pack">
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>
