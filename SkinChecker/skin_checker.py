@@ -126,14 +126,18 @@ class SkinChecker(SkinCheckerUI):
     def auto_create_sd(self,widget_id):
         self.builder.get_object(widget_id).configure(state = tkinter.DISABLED)
         if messagebox.askokcancel("Are you sure?",'Are you sure you want to generate SD files? This may take a while.'):
-            for filename in self.files:
-                full_fn = os.path.join(self.skin,filename.replace(".","@2x."))
+            for filename in os.listdir(self.skin):
+                full_fn = os.path.join(self.skin,filename)
                 
-                if os.path.exists(full_fn):
-                    image = Image.open(full_fn)
-                    w,h = image.size
-                    if w > 2 and h > 2:
-                        image.resize((w//2,h//2),resample=Image.Resampling.LANCZOS).save(full_fn.replace("@2x",""))
+                if "@2x" in filename:
+                    try:
+                        image = Image.open(full_fn)
+                        w,h = image.size
+                        if w > 2 and h > 2:
+                            image.resize((w//2,h//2),resample=Image.Resampling.LANCZOS).save(full_fn.replace("@2x",""))
+                        print(filename)
+                    except:
+                        print("Can't downsize ", filename)
             messagebox.showinfo("Finished!", "Finished creating SD files.")
         self.builder.get_object(widget_id).configure(state = tkinter.NORMAL)
 
